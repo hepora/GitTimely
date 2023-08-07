@@ -24,5 +24,6 @@ This is a simple Windows batch program mainly used for periodic automatic detect
 4. As long as the program window is open, it will automatically check for modifications every 5 minutes.
 5. If you close the window, the program will stop running.
 
-### 示例截图：
+### 示例截图(Example Screenshot):
 
+![image-20230807202842483](assets/image-20230807202842483.png)
