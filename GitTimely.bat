@@ -1,5 +1,9 @@
 @echo off
-
+REM 记录程序循环次数
+set loop_count=0
+REM 记录程序开始时间
+for /f "delims=" %%a in ('wmic OS Get localdatetime  ^| find "."') do set start_time=%%a
+set start_time=%start_time:~0,14%
 :loop
 cls  REM 清除屏幕内容
 
@@ -22,13 +26,19 @@ if %errorlevel%==0 (
     git show --name-status
 )
 
+REM 显示程序启动时间和循环计数
+echo Program started at: %start_time%
+echo Loop count: %loop_count%
+
 REM 5分钟倒计时
 echo Waiting for the next check in:
-for /L %%i in (300,-1,1) do (
+for /L %%i in (600,-1,1) do (
     set /p "=%%i " <nul
     timeout /t 1 /nobreak >nul
 )
 echo.
+REM 循环计数器递增
+set /a loop_count+=1
 
 REM 返回到循环的开始，再次执行检查
 goto loop
